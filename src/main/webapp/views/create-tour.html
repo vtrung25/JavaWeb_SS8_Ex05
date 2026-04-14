@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tạo Tour Mới</title>
+    <style>
+        .error { color: red; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+<h1>Tạo Tour Du Lịch Mới</h1>
+
+
+<div th:if="${#fields.hasErrors('')}" class="error">
+    <p th:errors="{}"></p>
+</div>
+
+<form th:action="@{/tour/create}" th:object="${tourDto}" method="post">
+
+    <div>
+        <label>Mã Tour:</label>
+        <input type="text" th:field="*{tourCode}" />
+        <span th:errors="*{tourCode}" class="error"></span>
+    </div>
+
+    <div>
+        <label>Giá người lớn (VNĐ):</label>
+        <input type="number" th:field="*{adultPrice}" />
+        <span th:errors="*{adultPrice}" class="error"></span>
+    </div>
+
+    <div>
+        <label>Giá trẻ em (VNĐ):</label>
+        <input type="number" th:field="*{childPrice}" />
+        <span th:errors="*{childPrice}" class="error"></span>
+    </div>
+
+    <div>
+        <label>Ngày khởi hành:</label>
+        <input type="date" th:field="*{startDate}" />
+        <span th:errors="*{startDate}" class="error"></span>
+    </div>
+
+    <div>
+        <label>Ngày kết thúc:</label>
+        <input type="date" th:field="*{endDate}" />
+        <span th:errors="*{endDate}" class="error"></span>
+    </div>
+
+    <button type="submit">Tạo Tour</button>
+</form>
+</body>
+</html>
